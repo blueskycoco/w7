@@ -1,0 +1,91 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+!endif
+
+!IF 0
+
+Module Name:
+    sources.
+
+
+Abstract:
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+!ENDIF
+
+SYNCHRONIZE_DRAIN=1
+
+!INCLUDE ..\makefile.inc
+
+!if "$(PLATFORMCHIP)" == "PLATFORM_S5PC100"
+TARGETNAME=s5pc100_fimg
+!endif
+
+!if "$(PLATFORMCHIP)" == "PLATFORM_S3C6410"
+TARGETNAME=s3c6410_fimg
+!endif
+
+TARGETTYPE=DYNLINK
+RELEASETYPE=PLATFORM
+DEFFILE=gles.def 
+
+DLLENTRY=DllEntry
+
+!INCLUDE ..\makefile.inc
+
+TARGETLIBS= \
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\ceddk.lib
+    
+    
+INCLUDES=$(INCLUDES);$(_TARGETPLATROOT)\Src\Drivers\fimg\INC;
+
+!if "$(PLATFORMCHIP)" == "PLATFORM_S5PC100"
+INCLUDES=$(INCLUDES);$(_TARGETPLATROOT)\Src\Drivers\DMA;
+!endif
+
+CDEFINES=$(CDEFINES) -DFIMG_MASKING_WORKAROUND -DNOMINMAX
+
+!if 1
+CDEFINES=$(CDEFINES) -DMULTI_CONTEXT
+!endif
+
+!if 0
+CDEFINES=$(CDEFINES) -DUSE_HOSTIF_DMA
+!endif
+
+!if 1
+CDEFINES=$(CDEFINES) -DUSE_INTERRUPT
+!endif
+
+!if 1
+CDEFINES=$(CDEFINES) -D$(PLATFORMCHIP)
+!endif
+
+
+CDEFINES=$(CDEFINES) /EHsc
+
+SOURCES= \
+    gldriver.cpp    \
+    libMain.cpp     \
+    global.c        \
+    platform.cpp    \
+    GPI_debug_wince.cpp
+
+        
+ARM_SOURCES =    fnc.s \
+        gl_asm.s    \
+
+OPTIMIZE_FAVOR=SPEED

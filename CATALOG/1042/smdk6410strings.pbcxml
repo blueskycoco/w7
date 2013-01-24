@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Copyright (c) Microsoft Corporation.  All rights reserved.
+-->
+<!--
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+-->
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:Samsung:SMDK6410:1042">
+    <Title>Samsung SMDK6410 StringTable 1042</Title>
+    <Vendor>Samsung</Vendor>
+    <OSVersion>7.00</OSVersion>
+    <FileVersion>7.0</FileVersion>
+  </FileInformation>
+  </CatalogFile>

@@ -1,0 +1,260 @@
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this sample source code is subject to the terms of the Microsoft
+; license agreement under which you licensed this sample source code. If
+; you did not accept the terms of the license agreement, you are not
+; authorized to use this sample source code. For the terms of the license,
+; please see the license agreement between you and Microsoft or, if applicable,
+; see the LICENSE.RTF on your install media or the root of your tools installation.
+; THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+;
+;
+;##########################################################
+
+IF IMGMULTIXIP
+#define     XIPKERNEL       XIPKERNEL
+ELSE
+#define     XIPKERNEL       NK
+ENDIF
+
+
+
+MODULES
+
+;   Name                    Path                                    Memory Type(Region)  Attribute
+;   --------------          ----------------------------------      -------------------  ----------
+
+;-------------
+; GWES drivers
+;-------------
+
+;------------- Display Driver -------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DISPLAY
+IF BSP_NODISPLAY !
+    s3c6410_disp.dll        $(_FLATRELEASEDIR)\s3c6410_disp.dll     NK         SHMK
+ENDIF BSP_NODISPLAY !
+; @CESYSGEN ENDIF CE_MODULES_DISPLAY
+;---------------------------------------------------------------------------------------
+
+;------------- Touch Screen Driver --------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_TOUCH
+IF BSP_NOTOUCH !
+    s3c6410_touch.dll        $(_FLATRELEASEDIR)\s3c6410_touch.dll   NK         SHQM        ; for Kernel, User Mode
+ENDIF BSP_NOTOUCH !
+; @CESYSGEN ENDIF CE_MODULES_TOUCH
+;---------------------------------------------------------------------------------------
+
+
+;------------- Key Board Driver -----------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_KEYBD || CE_MODULES_POINTER
+
+IF BSP_NOKEYPAD !
+    smdk6410_keypad.dll    $(_FLATRELEASEDIR)\smdk6410_keypad.dll   NK         SHMK
+ENDIF BSP_NOKEYPAD
+
+; @CESYSGEN ENDIF CE_MODULES_KEYBD || CE_MODULES_POINTER
+;---------------------------------------------------------------------------------------
+
+
+;-----------------
+; Device.exe drivers
+;-----------------
+
+
+
+;---------------------------------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DEVICE
+
+;-------------- NAND Flash Block Device Driver ----------------------------------------------
+IF BSP_IROM_SDMMC_CH0_BOOT !
+IF BSP_IROM_SDMMC_CH1_BOOT !
+IF BSP_NONANDFS !
+; This is needed in the NK region because it is needed by BINFS to load other regions
+    nandflash.dll            $(_FLATRELEASEDIR)\nandflash.dll       $(XIPKERNEL)        SHMK
+ENDIF BSP_NONANDFS !
+ENDIF BSP_IROM_SDMMC_CH1_BOOT !
+ENDIF BSP_IROM_SDMMC_CH0_BOOT !
+;---------------------------------------------------------------------------------------
+
+;-------------- HSMMC/SD Device Driver --------------------------------------------------
+; @CESYSGEN IF CE_MODULES_SDBUS
+
+IF BSP_IROM_SDMMC_CH1_BOOT !
+IF BSP_NOHSMMC_CH1 !
+    s3c6410_hsmmc1.dll    $(_FLATRELEASEDIR)\s3c6410_hsmmc1.dll     NK        SHMK
+ENDIF BSP_NOHSMMC_CH1 !
+ENDIF BSP_IROM_SDMMC_CH1_BOOT !
+; @CESYSGEN ENDIF CE_MODULES_SDBUS
+;---------------------------------------------------------------------------------------
+
+;-------------- CF ATAPI Device Driver ----------------------------------------------------
+; @CESYSGEN IF CE_MODULES_FSDMGR
+IF BSP_NOCFATAPI !
+    s3c6410_cf_atapi.dll    $(_FLATRELEASEDIR)\s3c6410_cf_atapi.dll NK        SHMK
+ENDIF BSP_NOCFATAPI !
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+;---------------------------------------------------------------------------------------
+
+;-------------- Camera Capture Filter Driver ------------------------------------------------
+IF BSP_NOCAMERA !
+    smdk6410_camera.dll    $(_FLATRELEASEDIR)\smdk6410_camera.dll   NK        SHMK
+ENDIF BSP_NOCAMERA !
+;---------------------------------------------------------------------------------------
+
+;------------------ I2C BUS Driver -------------------------------------------------------
+IF BSP_NOI2C !
+    s3c6410_iic.dll        $(_FLATRELEASEDIR)\s3c6410_iic.dll       NK        SHMK
+ENDIF BSP_NOI2C !
+;---------------------------------------------------------------------------------------
+
+;------------------ High Speed SPI Driver -------------------------------------------------
+IF BSP_NOSPI !
+    s3c6410_spi.dll        $(_FLATRELEASEDIR)\s3c6410_spi.dll       NK        SHMK
+ENDIF BSP_NOSPI !
+;---------------------------------------------------------------------------------------
+
+;-------------- Wave Device Driver -------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_WAVEAPI
+IF BSP_NOAUDIO !
+IF BSP_AUDIO_AC97 !
+    s3c6410_wavedev.dll    $(_FLATRELEASEDIR)\s3c6410_wavedev_iis.dll   NK     SHMK
+ENDIF BSP_AUDIO_AC97 !
+IF BSP_AUDIO_AC97
+    s3c6410_wavedev.dll    $(_FLATRELEASEDIR)\s3c6410_wavedev_ac97.dll  NK     SHMK
+ENDIF BSP_AUDIO_AC97
+ENDIF BSP_NOAUDIO !
+; @CESYSGEN ENDIF CE_MODULES_WAVEAPI
+;---------------------------------------------------------------------------------------
+
+;------------- USB Host Driver -----------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_USBD
+IF BSP_NOUSBHCD !
+    s3c6410_ohci2.dll        $(_FLATRELEASEDIR)\s3c6410_ohci2.dll       NK     SHMK
+ENDIF BSP_NOUSBHCD !
+; @CESYSGEN ENDIF CE_MODULES_USBD
+;---------------------------------------------------------------------------------------
+
+;------------- USB Function Driver --------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_USBFN
+IF BSP_NOUSBFN !
+IF BSP_KITL != USBSERIAL
+    s3c6410_usbfn.dll        $(_FLATRELEASEDIR)\s3c6410_usbfn.dll       NK     SHMK
+ENDIF
+ENDIF BSP_NOUSBFN !
+; @CESYSGEN ENDIF CE_MODULES_USBFN
+;---------------------------------------------------------------------------------------
+
+;------------- Serial/IrDA Driver ---------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_SERIAL
+IF BSP_NOSERIAL !
+    smdk6410_serial.dll    $(_FLATRELEASEDIR)\smdk6410_serial.dll       NK     SHMK
+ENDIF BSP_NOSERIAL !
+; @CESYSGEN ENDIF CE_MODULES_SERIAL
+;---------------------------------------------------------------------------------------
+
+IF IMGNOCODECS !
+
+;------------- MFC Driver ----------------------------------------------------------------
+IF BSP_NOMFC !
+    s3c6410_mfc.dll            $(_FLATRELEASEDIR)\s3c6410_mfc.dll       NK     SHMK
+ENDIF BSP_NOMFC !
+;---------------------------------------------------------------------------------------
+
+;------------- Jpeg Driver ----------------------------------------------------------------
+IF BSP_NOJPEG !
+    s3c6410_jpeg.dll        $(_FLATRELEASEDIR)\s3c6410_jpeg.dll         NK     SHMK
+ENDIF BSP_NOJPEG !
+;---------------------------------------------------------------------------------------
+
+;------------- CMM Driver --------------------------------------------------------------
+IF BSP_NOCMM !
+s3c6410_cmm.dll        $(_FLATRELEASEDIR)\s3c6410_cmm.dll       NK     SHMK
+ENDIF BSP_NOCMM !
+;---------------------------------------------------------------------------------------
+
+ENDIF IMGNOCODECS
+
+;------------- iROM SDMMC Drivers ------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_FSDMGR
+IF BSP_IROM_SDMMC_CH1_BOOT
+    BIBDrv.dll      $(_FLATRELEASEDIR)\BIBDrv.dll       $(XIPKERNEL)    SHMK
+    HSMMC.dll       $(_FLATRELEASEDIR)\HSMMC.dll        $(XIPKERNEL)    SHMK
+ENDIF BSP_IROM_SDMMC_CH1_BOOT
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+;---------------------------------------------------------------------------------------
+
+;--------------------
+; Power Control Driver
+;--------------------
+; ------------- Power Control Driver -------------------------------------------------------
+; @CESYSGEN IF DEVICE_PMIF
+    s3c6410_PwrCon.dll    $(_FLATRELEASEDIR)\s3c6410_PwrCon.dll             $(XIPKERNEL)    SHMK
+; @CESYSGEN ENDIF DEVICE_PMIF
+;---------------------------------------------------------------------------------------
+
+; ------------- Video Engine Driver -------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DISPLAY
+    s3c6410_Video.dll        $(_FLATRELEASEDIR)\s3c6410_Video.dll           $(XIPKERNEL)    SHMK
+; @CESYSGEN ENDIF CE_MODULES_DISPLAY
+;---------------------------------------------------------------------------------------
+
+;--------------------
+; Board Specific drivers
+;--------------------
+
+; ------------- Power Button Driver --------------------------------------------------------
+; @CESYSGEN IF DEVICE_PMIF
+IF BSP_NOPWRBTN !
+    smdk6410_PwrBtn.dll    $(_FLATRELEASEDIR)\smdk6410_PwrBtn.dll       NK     SHMK
+ENDIF BSP_NOPWRBTN !
+; @CESYSGEN ENDIF DEVICE_PMIF
+;---------------------------------------------------------------------------------------
+
+; -------------- OpenGLES 2.0 --------------------------------------------------------
+IF BSP_NOOES !
+     s3c6410_fimg.dll           $(_FLATRELEASEDIR)\s3c6410_fimg.dll                     NK     SHMK
+ENDIF BSP_NOOES !
+; -----------------------------------------------------------------------------------
+
+; -------------- Backlight --------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_BACKLIGHT
+IF BSP_NOBACKLIGHT !
+     backlight.dll           $(_FLATRELEASEDIR)\backlight.dll           NK     SHMK
+ENDIF BSP_NOBACKLIGHT !
+; @CESYSGEN ENDIF CE_MODULES_BACKLIGHT
+; -----------------------------------------------------------------------------------
+
+
+
+
+; @CESYSGEN ENDIF CE_MODULES_DEVICE
+;---------------------------------------------------------------------------------------
+
+
+
+;####################################################################
+
+FILES
+
+;      Name                                    Path                       Memory Type
+;    --------------                ----------------------------------     -----------
+IF BSP_NOOES !
+    libGLESv1_CM.dll               $(_FLATRELEASEDIR)\libGLESv1_CM.dll     NK     U
+    libGLESv2.dll                  $(_FLATRELEASEDIR)\libGLESv2.dll        NK     U
+    libEGL.dll                     $(_FLATRELEASEDIR)\libEGL.dll           NK     U
+ENDIF BSP_NOOES ! 
+
+; -------------- OpenGL shaders --------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_XRRENDEREROPENGL
+IF BSP_NOOES !
+    shaders.dll                    $(_FLATRELEASEDIR)\shaders.dll          NK     U
+ENDIF BSP_NOOES ! 
+; @CESYSGEN ENDIF CE_MODULES_XRRENDEREROPENGL
+;---------------------------------------------------------------------------------------
+
+
+
+;####################################################################
+

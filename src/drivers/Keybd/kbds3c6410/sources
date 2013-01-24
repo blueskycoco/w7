@@ -1,0 +1,74 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+!endif
+!if 0
+Copyright (c) 2008. Samsung Electronics, co. ltd  All rights reserved.
+!endif
+
+!IF 0
+
+Module Name:
+    sources.
+
+Abstract:
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+!ENDIF
+
+!IF "$(BSP_NOKEYBD)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+SYNCHRONIZE_DRAIN=1
+RELEASETYPE=PLATFORM
+
+TARGETNAME=smdk6410_keypad
+TARGETTYPE=DYNLINK
+DLLENTRY=DllMain
+
+!IF "$(LOCALE)" == "0412"
+DEFFILE=kbdkor.def
+!ELSE
+DEFFILE=Kbdus.def
+!ENDIF
+
+TARGETLIBS= \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\ceddk.lib
+
+SOURCELIBS=\
+    $(_PLATLIB)\$(_CPUINDPATH)\S3C6410_Layout.lib    \
+    $(_PLATLIB)\$(_CPUINDPATH)\KeyPadcommon.lib    \
+    $(_PLATLIB)\$(_CPUINDPATH)\PddList.lib            \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\LayoutManager.lib    \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\Nop_KbdCommon.lib    \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\NumPadRmp.lib        \
+
+!IF "$(LOCALE)" == "0412"
+SOURCELIBS= \
+    $(SOURCELIBS) \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\InputLang_0412.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\kbdkor_lib.lib
+!ELSE
+SOURCELIBS= \
+    $(SOURCELIBS) \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\InputLang_0409.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\kbdus_lib.lib
+!ENDIF
+
+WINCETARGETFILE=dummy
+
+SOURCES=\
+

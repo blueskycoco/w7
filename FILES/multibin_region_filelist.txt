@@ -1,0 +1,43 @@
+REGION XIPKERNEL
+	nk.exe
+	kitl.dll
+	kernel.dll
+	kd.dll
+	hd.dll
+	osaxst0.dll
+	osaxst1.dll
+	oalioctl.dll
+	k.coredll.dll
+	locale.dll
+	sorting.dll
+	normalize.dll
+	fpcrt.dll   
+	k.fpcrt.dll
+	filesys.dll
+	romfsd.dll
+	device.dll
+	devmgr.dll
+	regenum.dll
+	busenum.dll
+	relfsd.dll
+	relfsdext.dll
+	ccfgsvc.dll
+	lvmod.dll
+	pm.dll
+	binfs.dll
+	fsdmgr.dll
+	mspart.dll
+	k.ceddk.dll
+	ceddk.dll
+	nandflash.dll
+	initobj.dat
+	boot.hv
+	user.hv
+	initdb.ini
+	wince.nls
+	locale.nls
+	en-US.nlx
+	SortDefault.nls
+
+
+

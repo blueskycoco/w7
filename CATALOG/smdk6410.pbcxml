@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (c) Microsoft Corporation.  All rights reserved.
+-->
+<!--
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+-->
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:Samsung:SMDK6410">
+    <Title>SMDK6410 BSP Catalog File</Title>
+    <Description>#Samsung:SMDK6410:SMDK6410DevelopmentPlatform:Description</Description>
+    <Comment>SMDK6410 Catalog file for s3c6410</Comment>
+    <Vendor>Microsoft</Vendor>
+    <OSVersion>7.00</OSVersion>
+    <FileVersion>7.0</FileVersion>
+  </FileInformation>
+  <Bsp Id="Bsp:Samsung:SMDK6410:ARMV6">
+    <Title>Samsung SMDK6410 : ARMv6</Title>
+    <Description>A BSP for the Samsung SMDK6410 Development Platform.</Description>
+    <PlatformDirectory>SMDK6410</PlatformDirectory>
+    <CpuId>Cpu:ARMV6</CpuId>
+    <BspItemId>Item:Samsung:backlight:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:smdk6410_camera:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_disp:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_Video:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:smdk6410_keypad:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_PwrCon:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:smdk6410_PwrBtn:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_spi:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:smdk6410_serial:SMDK6410</BspItemId>    
+    <BspItemId>Item:Samsung:s3c6410_usbfn:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_ohci2:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_hsmmc1:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_touch:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_jpeg:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_mfc:SMDK6410</BspItemId>    
+    <BspItemId>Item:Samsung:s3c6410_wavedev_iis:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_wavedev_ac97:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:FMD:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:EthernetBootloader:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_cf_atapi:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_fimg:SMDK6410</BspItemId>
+    <BspItemId>Item:Samsung:s3c6410_iic:SMDK6410</BspItemId>
+  </Bsp>
+  <Item Id="Item:Samsung:backlight:SMDK6410">
+    <Title>Backlight Driver</Title>  
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>backlight.dll</Module>
+    <Location>Device Driver\BACKLIGHT</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\BACKLIGHT</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\BACKLIGHT</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:smdk6410_camera:SMDK6410">
+    <Title>Camera Driver(DSHOW)</Title>    
+    <Type>BspSpecific</Type>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>smdk6410_camera.dll</Module>
+    <Location>Device Driver\Camera</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\CAMERA</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\CAMERA</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_disp:SMDK6410">
+    <Title>Display Driver(DDRAW)</Title>    
+    <Type>BspSpecific</Type>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_disp.dll</Module>
+    <Location>Device Driver\Display</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\DISPLAY\DISPLAY_DRV</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\DISPLAY\DISPLAY_DRV</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_Video:SMDK6410">
+    <Title>RAW Level Video Driver(Custom API)</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_Video.dll</Module>
+    <Location>Device Driver\Display</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\DISPLAY\VIDEO_DRV</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\DISPLAY\VIDEO_DRV</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:smdk6410_keypad:SMDK6410">
+    <Title>Keyboard and Keypad Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>smdk6410_keypad.dll</Module>
+    <Location>Device Driver\Keybd</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\KEYBD\KBDS3C6410</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\KEYBD\KBDS3C6410</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_PwrCon:SMDK6410">
+    <Title>Power Controller</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_PwrCon.dll</Module>
+    <Location>Device Driver\PowerControl</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\POWERCONTROL</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\POWERCONTROL</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:smdk6410_PwrBtn:SMDK6410">
+    <Title>Power Button</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>smdk6410_PwrBtn.dll</Module>
+    <Location>Device Driver\PowerButton</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\POWERBUTTON</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\POWERBUTTON</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_spi:SMDK6410">
+    <Title>High Speed SPI Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_spi.dll</Module>
+    <Location>Device Driver\Spi</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\SPI</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\SPI</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:smdk6410_serial:SMDK6410">
+    <Title>UART Serial Driver</Title>    
+    <Type>BspSpecific</Type>
+    <Variable>BSP_SERIAL</Variable>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>smdk6410_serial.dll</Module>
+    <Location>Device Driver\Serial</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\SERIAL</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\SERIAL</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_usbfn:SMDK6410">
+    <Title>USB Function</Title>    
+    <Type>BspSpecific</Type>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_usbfn.dll</Module>
+    <Location>Device Driver\Otg</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\OTG\DEVICE</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\OTG\DEVICE</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_ohci2:SMDK6410">
+    <Title>USB Host (OHCI)</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_ohci2.dll</Module>
+    <Location>Device Driver\USB Host Driver</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\USB\HCD</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\USB\HCD</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_hsmmc1:SMDK6410">
+    <Title>HSMMC Driver for Channel 1</Title>    
+    <Type>BspSpecific</Type>   
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_hsmmc1.dll</Module>
+    <Location>Device Driver\HSMMC</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\HSMMC\HSMMCCH1\S3C6410_HSMMC_DRV</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\HSMMC\HSMMCCH1\S3C6410_HSMMC_DRV</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_touch:SMDK6410">
+    <Title>Legacy Touch Panel Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_touch.dll</Module>
+    <Location>Device Driver\Touch</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\TOUCH</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\TOUCH</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_jpeg:SMDK6410">
+    <Title>Jpeg Decoder Driver</Title>    
+    <Type>BspSpecific</Type>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_jpeg.dll</Module>
+    <Location>Device Driver\Multimedia</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\JPEG</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\JPEG</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_mfc:SMDK6410">
+    <Title>Multi Function Codec Driver</Title>    
+    <Type>BspSpecific</Type>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_mfc.dll</Module>
+    <Location>Device Driver\Multimedia</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\MFC</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\MFC</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\CMM</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\CMM</Path>
+    </SourceCode>
+  </Item>  
+  <Item Id="Item:Samsung:s3c6410_wavedev_iis:SMDK6410">
+    <Title>IIS Audio WaveDev Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_wavedev_iis.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Location>Device Driver\Wavedev</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\WAVEDEV\S3C6410_IIS_DRV</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\WAVEDEV\S3C6410_IIS_DRV</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_wavedev_ac97:SMDK6410">
+    <Title>AC97 Audio WaveDev Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_wavedev_ac97.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Location>Device Driver\Wavedev</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\WAVEDEV\S3C6410_AC97_DRV</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\WAVEDEV\S3C6410_AC97_DRV</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:FMD:SMDK6410">
+    <Title>FMD-based NAND Storage</Title>    
+    <Type>BspSpecific</Type>    
+    <Module>nandflash.dll</Module>
+    <Location>Device Driver\NANDFLASH</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\NANDFLASH</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\NANDFLASH</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:EthernetBootloader:SMDK6410">
+    <Title>Ethernet Bootloader (eboot)</Title>
+    <Description>Ethernet Bootloader supports Image Download and Flashing</Description>
+    <Type>BspSpecific</Type>
+    <Location />
+    <SourceCode>
+      <Title>Ethernet Bootloader Source Code</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\BOOTLOADER\EBOOT</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_cf_atapi:SMDK6410">
+    <Title>CompactFlash Driver</Title>    
+    <Type>BspSpecific</Type>    
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_cf_atapi.dll</Module>
+    <Location>Device Driver\CF_ATAPI</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\CF_ATAPI</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\CF_ATAPI</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_fimg:SMDK6410">
+    <Title>FIMG Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_fimg.dll</Module>
+    <Location>Device Driver\FIMG</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\FIMG</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\FIMG</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:Samsung:s3c6410_iic:SMDK6410">
+    <Title>IIC Driver</Title>    
+    <Type>BspSpecific</Type>
+    <SupportedCpuId>Cpu:ARMV6</SupportedCpuId>
+    <Module>s3c6410_iic.dll</Module>
+    <Location>Device Driver\IIC</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\IIC</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\SMDK6410\SRC\DRIVERS\IIC</Path>
+    </SourceCode>
+  </Item>
+</CatalogFile>

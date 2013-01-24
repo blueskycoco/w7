@@ -1,0 +1,50 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+!endif
+!if 0
+    File:   DIRS
+
+    Author: Flash Software
+
+    COPYRIGHT (c) 2006 SAMSUNG ELECTRONICS CO., LTD. ALL RIGHTS RESERVED
+!endif
+
+!if ("$(BSP_IROM_SDMMC_CH0_BOOT)"!="1")&&("$(BSP_IROM_SDMMC_CH1_BOOT)"!="1")
+SKIPBUILD = 1
+!endif
+
+TARGETNAME = BIBDrv
+TARGETTYPE = DYNLINK
+RELEASETYPE = PLATFORM
+WINCEOEM = 1
+DLLENTRY = _DllMainCRTStartup
+DEFFILE = BIBDrv.def
+
+!IF "$(_TGTPROJ)" == "uldr"
+CDEFINES = $(CDEFINES) -DULDR
+!ENDIF
+
+CDEFINES = $(CDEFINES) -DCOREDLL
+LDEFINES = -subsystem:native /DEBUG /DEBUGTYPE:CV /FIXED:NO
+
+INCLUDES = $(INCLUDES);$(_TARGETPLATROOT)\src\inc;
+
+TARGETLIBS = \
+    $(_PUBLICROOT)\common\oak\lib\$(_CPUINDPATH)\storeapi.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\ceddk.lib \
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_PLATLIB)\$(_CPUINDPATH)\DriverLib.lib \
+    $(_PLATLIB)\$(_CPUINDPATH)\SDMMCLib_BIBDrv.lib \
+
+SOURCES = \
+    BIBDrv.c
+

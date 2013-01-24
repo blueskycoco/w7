@@ -1,0 +1,52 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+!endif
+
+# xref VIGUID {549CAC8D_8AF0_4789_9ACF_2BB92599470D}
+# xref VSGUID {0601CE65_BF4D_453A_966B_E20250AD2E8E}
+
+!IF "$(BSP_NOSERIAL)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+!IF "$(BSP_NOIRDA2)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_NOIRDA2
+!ENDIF
+
+!IF "$(BSP_NOIRDA3)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_NOIRDA3
+!ENDIF
+
+WINCEOEM=1
+
+TARGETNAME=smdk6410_serial
+TARGETTYPE=DYNLINK
+RELEASETYPE=PLATFORM
+
+DEFFILE=serial.def
+DLLENTRY=_DllEntryCRTStartup
+
+TARGETLIBS= \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\ceddk.lib
+
+SOURCELIBS= \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\serpddcm.lib \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\com_mdd2.lib
+
+SOURCES= \
+    ser_smdk6410.cpp \
+    pdds3c6410_ser.cpp
+
+#xref VIGUID {549CAC8D_8AF0_4789_9ACF_2BB92599470D}
+#xref VSGUID {0601CE65_BF4D_453A_966B_E20250AD2E8E}
+
